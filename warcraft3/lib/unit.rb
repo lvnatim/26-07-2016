@@ -1,18 +1,26 @@
 class Unit
 
-  attr_reader :health_points, :attack_power
+  attr_reader :attack_power
+  attr_accessor :health_points
 
   def initialize(hp, ap)
     @health_points = hp
     @attack_power = ap
   end
 
-  def attack!(enemy)
-    enemy.damage(attack_power)
+  def attack!(target)
+    modifier = 1
+    modifier = 0.5 if target.is_a? Barracks
+    target.damage((attack_power*modifier).ceil) unless dead? || target.dead?
   end
 
-  def damage(ap)
-    @health_points -= ap
+  def dead?
+    return true if health_points <= 0
+    false
+  end
+
+  def damage(damage)
+    @health_points -= damage
   end
 
 end

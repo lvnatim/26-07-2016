@@ -10,7 +10,9 @@ rescue LoadError
   # ignore
 end
 
+safely_require '../lib/plugins/damage'
 safely_require '../lib/unit'
 safely_require '../lib/footman'
 safely_require '../lib/barracks'
 safely_require '../lib/peasant'
+safely_require '../lib/siegeEngine'
